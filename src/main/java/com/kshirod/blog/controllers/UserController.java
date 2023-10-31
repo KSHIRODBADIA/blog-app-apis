@@ -17,14 +17,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kshirod.blog.payloads.ApiResponse;
 import com.kshirod.blog.payloads.UserDto;
 import com.kshirod.blog.services.UserService;
-
+import com.kshirod.blog.payloads.ApiResponse;
+import io.swagger.v3.oas.annotations.*;
+//import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/users")
+@Tag(name="UserController", description="APIs for User")
 public class UserController {
 	
 	@Autowired
@@ -32,6 +36,12 @@ public class UserController {
 	
 	//POST-create user
 	@PostMapping("/")
+	@Operation(summary="create new user!!", description="This is user dscription")
+	@ApiResponses(value= {
+		//	@ApiResponse(responseCode = "200", description= "Success || OK")
+//			@ApiResponse(responseCode = "200" ,description= "Success "),
+//			@ApiResponse(responseCode = "404" ,description = "foo")
+	})
 	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto){
 		UserDto createdUser = this.userService.createUser(userDto);
 		return new ResponseEntity<>(createdUser, HttpStatus.CREATED);

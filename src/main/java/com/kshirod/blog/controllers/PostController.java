@@ -30,11 +30,13 @@ import com.kshirod.blog.payloads.PostResponse;
 import com.kshirod.blog.services.FileService;
 import com.kshirod.blog.services.PostService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 
 
 @RestController
 @RequestMapping("/api/")
+@Tag(name="PostController", description="APIs for post")
 public class PostController {
 
 	@Autowired

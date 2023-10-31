@@ -18,10 +18,12 @@ import com.kshirod.blog.payloads.UserDto;
 import com.kshirod.blog.security.JwtTokenHelper;
 import com.kshirod.blog.services.UserService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/auth")
+@Tag(name="AuthController", description="APIs for Authentication")
 public class AuthController {
 
 	@Autowired
