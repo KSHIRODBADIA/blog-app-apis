@@ -1,5 +1,6 @@
 package com.kshirod.blog.controllers;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kshirod.blog.entities.User;
 import com.kshirod.blog.payloads.JwtAuthRequest;
 import com.kshirod.blog.payloads.JwtAuthResponse;
 import com.kshirod.blog.payloads.UserDto;
@@ -38,6 +40,9 @@ public class AuthController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private ModelMapper modelMapper;
+	
 
 	@PostMapping("/login")
 	public ResponseEntity<JwtAuthResponse> createToken(@RequestBody JwtAuthRequest request) {
@@ -47,7 +52,9 @@ public class AuthController {
 		String token = this.jwtTokenHelper.generateToken(userDetail);
 		JwtAuthResponse response = JwtAuthResponse.builder()
                 .token(token)
-                .username(userDetail.getUsername()).build();
+                .username(userDetail.getUsername())
+                .user(this.modelMapper.map((User)userDetail, UserDto.class))
+                .build();
 //		JwtAuthResponse response = new JwtAuthResponse();
 //		response.setToken(token);
 		return new ResponseEntity<JwtAuthResponse>(response, HttpStatus.OK);

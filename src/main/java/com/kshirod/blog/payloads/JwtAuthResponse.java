@@ -14,4 +14,5 @@ import lombok.ToString;
 public class JwtAuthResponse {
 	private String token;
 	private String username;
+	private UserDto user;
 }
