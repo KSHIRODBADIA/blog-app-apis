@@ -57,25 +57,18 @@ The app defines following CRUD APIs.
 
 | Method | Url | Decription | Sample Valid Request Body | 
 | ------ | --- | ---------- | --------------------------- |
-| POST   | /api/auth/signup | Sign up | [JSON](#signup) |
-| POST   | /api/auth/signin | Log in | [JSON](#signin) |
+| POST   | /auth/register | Sign up | [JSON](#register) |
+| POST   | /auth/login | Log in | [JSON](#login) |
 
 ### Users
 
 | Method | Url | Description | Sample Valid Request Body |
 | ------ | --- | ----------- | ------------------------- |
-| GET    | /api/users/me | Get logged in user profile | |
-| GET    | /api/users/{username}/profile | Get user profile by username | |
-| GET    | /api/users/{username}/posts | Get posts created by user | |
-| GET    | /api/users/{username}/albums | Get albums created by user | |
-| GET    | /api/users/checkUsernameAvailability | Check if username is available to register | |
-| GET    | /api/users/checkEmailAvailability | Check if email is available to register | |
-| POST   | /api/users | Add user (Only for admins) | [JSON](#usercreate) |
-| PUT    | /api/users/{username} | Update user (If profile belongs to logged in user or logged in user is admin) | [JSON](#userupdate) |
-| DELETE | /api/users/{username} | Delete user (For logged in user or admin) | |
-| PUT    | /api/users/{username}/giveAdmin | Give admin role to user (only for admins) | |
-| PUT    | /api/users/{username}/TakeAdmin | Take admin role from user (only for admins) | |
-| PUT    | /api/users/setOrUpdateInfo | Update user profile (If profile belongs to logged in user or logged in user is admin) | [JSON](#userinfoupdate) |
+| GET    | /api/users/{userId} | Get logged in user profile | |
+| POST   | /api/users | create new user | [JSON](#usercreate) |
+| PUT    | /api/users/{userId} | Update user details | [JSON](#userupdate) |
+| DELETE | /api/users/{userId} | Delete user (For logged in user or admin) | |
+| GET    | /api/users/ | Return all user details | |
 
 ### Posts
 
@@ -97,24 +90,13 @@ The app defines following CRUD APIs.
 | PUT    | /api/posts/{postId}/comments/{id} | Update comment by id if it belongs to post with id = postId (If comment belongs to logged in user or logged in user is admin) | [JSON](#commentupdate) |
 | DELETE | /api/posts/{postId}/comments/{id} | Delete comment by id if it belongs to post with id = postId (If comment belongs to logged in user or logged in user is admin) | |
 
-### Albums
+### Category
 
 | Method | Url | Description | Sample Valid Request Body |
 | ------ | --- | ----------- | ------------------------- |
-| GET    | /api/albums | Get all albums | |
-| GET    | /api/albums/{id} | Get album by id | |
-| POST   | /api/albums | Create new album (By logged in user) | [JSON](#albumcreate) |
-| PUT    | /api/albums/{id} | Update album (If album belongs to logged in user or logged in user is admin) | [JSON](#albumupdate) |
-| DELETE | /api/albums/{id} | Delete album (If album belongs to logged in user or logged in user is admin) | |
-| GET    | /api/albums/{id}/photos | Get all photos which belongs to album with id = id | |
-
-### Photos
-
-| Method | Url | Description | Sample Valid Request Body |
-| ------ | --- | ----------- | ------------------------- |
-| GET    | /api/photos | Get all photos | |
-| GET    | /api/photos/{id} | Get photo by id | |
-| POST   | /api/photos | Create new photo (By logged in user) | [JSON](#photocreate) |
-| PUT    | /api/photos/{id} | Update photo (If photo belongs to logged in user or logged in user is admin) | [JSON](#photoupdate) |
-| DELETE | /api/photos/{id} | Delete photo (If photo belongs to logged in user or logged in user is admin) | |
+| GET    | /api/categories | Get all categories | |
+| GET    | /api/categories/{id} | Get category by id | |
+| POST   | /api/categories | Create new categories (By logged in user) | [JSON](#albumcreate) |
+| PUT    | /api/categories/{id} | Update album (If album belongs to logged in user or logged in user is admin) | [JSON](#albumupdate) |
+| DELETE | /api/categories/{id} | Delete album (If album belongs to logged in user or logged in user is admin) | |
 
